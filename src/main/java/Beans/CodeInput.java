@@ -56,27 +56,26 @@ public class CodeInput implements Serializable {
     public void setTwitter(String twitter) {
         this.twitter = twitter;
     }
-    
-    
 
     public String saveCode() {
         Set<String> correctCodes = singleton.getCorrectCodes();
-        boolean correctAnswer = false;
+        int correctAnswer = 0;
         for (String correctCode : correctCodes) {
             if (this.code.contains(correctCode)) {
-                correctAnswer = true;
+                correctAnswer++;
             }
         }
-        if (correctAnswer = false) {
+        if (correctAnswer == 0) {
+            return null;
+        } else {
+            Datastore ds = singleton.getDatastore();
+            Query<Player> updateQueryPlayer = ds.createQuery(Player.class).field("twitter").equal(this.twitter);
+            UpdateOperations<Player> opsPlayer;
+            opsPlayer = ds.createUpdateOperations(Player.class).add("codes", this.code, false);
+            ds.updateFirst(updateQueryPlayer, opsPlayer, true);
+
             return null;
         }
-        Datastore ds = singleton.getDatastore();
-        Query<Player> updateQueryPlayer = ds.createQuery(Player.class).field("twitter").equal(this.twitter);
-        UpdateOperations<Player> opsPlayer;
-        opsPlayer = ds.createUpdateOperations(Player.class).add("codes", this.code, false);
-        ds.updateFirst(updateQueryPlayer, opsPlayer, true);
-
-        return null;
     }
 
 }
