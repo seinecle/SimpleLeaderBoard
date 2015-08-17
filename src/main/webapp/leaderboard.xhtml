@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Leaderboard</title>
+    </h:head>
+    <h:body>
+        <img style="display: block;
+             margin-left: auto;
+             margin-right: auto;" src="logo onlylyon emlyon.png"/><br/>
+
+        <br/>
+        <br/>
+        <br/>
+        <h2 style="text-align: center;">More info on CODAPPS and the bus tour: <a href="http://www.codapps.io">http://www.codapps.io</a></h2>
+        <br/>
+        <br/>
+        <h1 style="text-align: center;">Leaderboard:</h1>
+
+
+        <p:dataTable var="player" value="#{playersBean.players}" rowIndexVar="rowIndex">
+
+            <p:column headerText="Rank">
+                #{rowIndex+1}
+            </p:column>
+
+            <p:column headerText="Twitter Handle">
+                <h:outputText value="#{player.twitter}" />
+            </p:column>
+
+            <p:column headerText="Correct codes">
+                <h:outputText value="#{player.correctCodes}" />
+            </p:column>
+
+        </p:dataTable>
+    </h:body>
+</html>
+

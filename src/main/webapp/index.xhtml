@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Save your code</title>
+    </h:head>
+    <h:body>
+        <img style="display: block;
+             margin-left: auto;
+             margin-right: auto;" src="logo onlylyon emlyon.png"/><br/>
+        <br/>
+        <h1>This is a test page for a leaderboard</h1>
+        <br />
+        Regular players would enter codes like #CODAPPSI35304 but to test the app, <b>the codes will be the correct answers to these questions:</b><br />
+        1) What is the year of foundation of EMLYON?<br/>
+        <br/>
+        2) What is the first city that the <a href="http://www.codapps.io">CODAPPS bus tour</a> will visit?<br/>
+        <br/>
+        3) How many years of experience in coding are required to register to CODAPPS?<br/>
+        4) What is the name of the framework that we will used to code mobile apps in CODAPPS?<br/>
+        <br/>
+        <br/>
+
+        <h:form>
+            Your Twitter handle: <p:inputText value="#{codeInput.twitter}" required="true">
+                <f:validateLength minimum="3" maximum="16" /> 
+            </p:inputText>
+            <br/>
+            <br/>
+            The code you found / the answser to one of the answers above: <p:inputText value="#{codeInput.code}" /><br/>
+            <br/>
+            <p:commandButton value="submit" action="#{codeInput.saveCode}"/><br/>
+        </h:form>
+        <br/>
+        <br/>
+        <b>Check the <h:link outcome="leaderboard" value="leaderboard" /></b>
+
+
+
+    </h:body>
+</html>
+
