@@ -13,6 +13,7 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -53,6 +54,10 @@ public class PlayersBean implements Serializable {
             Query q = ds.createQuery(Player.class);
             players = q.asList();
 
+            if (players == null) {
+                players = new ArrayList();
+            }
+
             for (Player player : players) {
 
 //            Query<Player> qUNiquePlayer = ds.createQuery(Player.class).filter("twitter", player.getTwitter());
@@ -87,8 +92,6 @@ public class PlayersBean implements Serializable {
             Logger.getLogger(PlayersBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
-        
         Collections.sort(players);
         Collections.reverse(players);
 

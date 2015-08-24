@@ -17,7 +17,7 @@
             <br/>
             <br/>
 
-            <p:dataTable var="player" value="#{playersBean.players}" rowIndexVar="rowIndex">
+            <p:dataTable var="player" value="#{playersBean.players}" rowIndexVar="rowIndex" tableStyle="width:auto">
 
                 <p:column headerText="Position">
                     #{player.rank} <i class="#{rowIndex lt 3 ? 'fa fa-thumbs-o-up ':''}"></i> 

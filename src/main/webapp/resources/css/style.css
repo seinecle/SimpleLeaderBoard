@@ -11,6 +11,18 @@ body {
     min-height:900px;
     font-weight: 100;
 }
+
+iframe {
+    height: 99vh!important;
+}
+
+.leaderboard h1 {
+    padding: 0!important;
+    margin: 0!important;
+    height: auto!important;
+    
+}
+
 a {
     color: #5dba5d;
     transition: 0.2s all;
@@ -53,7 +65,7 @@ h2 {
 .content_main {
     background-color: rgba(255, 255, 255, 0.36);
     border-radius: 6px;
-    padding: 20px 20px 0px;
+    padding: 20px 77px 30px;
     margin-bottom: 18px;
     transition:0.2s all;    
 }

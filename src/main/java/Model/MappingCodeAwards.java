@@ -21,6 +21,8 @@ public class MappingCodeAwards {
         mapCategoryToFontIcon.put("bus", "fa-bus");
         mapCategoryToFontIcon.put("twitter", "fa-twitter");
         mapCategoryToFontIcon.put("academic", "fa-graduation-cap");
+        mapCategoryToFontIcon.put("fan", "fa-user-plus");
+        mapCategoryToFontIcon.put("facebook", "fa-facebook");
     }
 
     public static Map<String, String> getMapCategoryToFontIcon() {
