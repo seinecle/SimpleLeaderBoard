@@ -5,14 +5,22 @@
  */
 package Beans;
 
+import BusinessLogic.CodesImporter;
+import Model.CodeAward;
+import Model.MappingCodeAwards;
 import Model.Player;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import org.mongodb.morphia.Datastore;
@@ -23,7 +31,7 @@ import org.mongodb.morphia.query.Query;
  * @author LEVALLOIS
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class PlayersBean implements Serializable {
 
     @Inject
@@ -36,10 +44,72 @@ public class PlayersBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        Datastore ds = singleton.getDatastore();
-        Query q = ds.createQuery(Player.class);
-        players = q.asList();
+
+        try {
+            Set<CodeAward> codeAwards = CodesImporter.importCodes();
+            MappingCodeAwards.initializeMapping();
+
+            Datastore ds = singleton.getDatastore();
+            Query q = ds.createQuery(Player.class);
+            players = q.asList();
+
+            for (Player player : players) {
+
+//            Query<Player> qUNiquePlayer = ds.createQuery(Player.class).filter("twitter", player.getTwitter());
+//            Player foundPlayer = (Player) qUNiquePlayer.get();
+                StringBuilder sb = new StringBuilder();
+
+                Multiset<String> categoryCodeAwards = HashMultiset.create();
+
+                for (String code : player.getCodes()) {
+                    for (CodeAward codeAward : codeAwards) {
+                        if (code.equals(codeAward.getCode())) {
+                            categoryCodeAwards.add(codeAward.getCategory());
+                            player.setPoints(player.getPoints() + codeAward.getPoints());
+                            break;
+                        }
+                    }
+                }
+
+                for (String categoryCodeAward : categoryCodeAwards.elementSet()) {
+                    if (MappingCodeAwards.getMapCategoryToFontIcon().get(categoryCodeAward) != null) {
+                        sb.append("<i style=\"font-size:0.8em\" class=\"fa ").append(MappingCodeAwards.getMapCategoryToFontIcon().get(categoryCodeAward)).append("\"></i> x ").append(categoryCodeAwards.count(categoryCodeAward));
+                        sb.append(", ");
+                    }
+                }
+                if (sb.lastIndexOf(", ") > 0) {
+                    sb.delete(sb.lastIndexOf(","), sb.length() - 1);
+                }
+                player.setHtmlListOfCodeAwards(sb.toString());
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(PlayersBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         
+        Collections.sort(players);
+        Collections.reverse(players);
+
+        //find rank
+        Player previous = null;
+        int counterPlayers = 0;
+
+        for (Player player : players) {
+            counterPlayers++;
+            if (previous != null) {
+                if (player.getPoints() == previous.getPoints()) {
+                    player.setRank(previous.getRank());
+                } else {
+                    player.setRank(counterPlayers);
+                }
+            } else {
+                player.setRank(counterPlayers);
+            }
+            previous = player;
+
+        }
     }
 
     public List<Player> getPlayers() {

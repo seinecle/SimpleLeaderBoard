@@ -22,6 +22,9 @@ public class Player implements Comparable<Player> {
     String[] codes;
     String twitter;
     int correctCodes;
+    String htmlListOfCodeAwards;
+    int rank;
+    int points = 0;
 
     public String getEmailAddress() {
         return email;
@@ -55,9 +58,36 @@ public class Player implements Comparable<Player> {
         this.correctCodes = correctCodes;
     }
 
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public String getHtmlListOfCodeAwards() {
+
+        return htmlListOfCodeAwards;
+    }
+
+    public void setHtmlListOfCodeAwards(String htmlListOfCodeAwards) {
+        this.htmlListOfCodeAwards = htmlListOfCodeAwards;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    
+    
+
     @Override
     public int compareTo(Player another) {
-        if (this.codes.length < another.codes.length) {
+        if (this.points < another.points) {
             return -1;
         } else {
             return 1;

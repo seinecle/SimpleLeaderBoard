@@ -5,11 +5,16 @@
  */
 package Beans;
 
+import BusinessLogic.CodesImporter;
+import Model.CodeAward;
 import Model.Player;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Set;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
@@ -38,7 +43,8 @@ public class CodeInput implements Serializable {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        code = !code.startsWith("#") ? "#" + code : code;
+        this.code = code.toLowerCase();
     }
 
     public String getEmail() {
@@ -54,28 +60,42 @@ public class CodeInput implements Serializable {
     }
 
     public void setTwitter(String twitter) {
-        this.twitter = twitter;
+        this.twitter = twitter.replace("@", "");
     }
 
-    public String saveCode() {
-        Set<String> correctCodes = singleton.getCorrectCodes();
-        int correctAnswer = 0;
-        for (String correctCode : correctCodes) {
-            if (this.code.contains(correctCode)) {
-                correctAnswer++;
+    public void saveCode() throws IOException {
+
+        Set<CodeAward> codeAwards = CodesImporter.importCodes();
+        if (codeAwards == null || codeAwards.isEmpty()) {
+            return;
+        }
+
+        String correctAnswer = null;
+
+        int nbCorrectAnswer = 0;
+        for (CodeAward codeAward : codeAwards) {
+            if (this.code.equals(codeAward.getCode())) {
+                nbCorrectAnswer++;
+                correctAnswer = codeAward.getCode();
             }
         }
-        if (correctAnswer == 0) {
-            return null;
+        if (nbCorrectAnswer == 0) {
+            addMessage("Code is invalid");
+            return;
         } else {
             Datastore ds = singleton.getDatastore();
             Query<Player> updateQueryPlayer = ds.createQuery(Player.class).field("twitter").equal(this.twitter);
             UpdateOperations<Player> opsPlayer;
-            opsPlayer = ds.createUpdateOperations(Player.class).add("codes", this.code, false);
+            opsPlayer = ds.createUpdateOperations(Player.class).add("codes", correctAnswer, false);
             ds.updateFirst(updateQueryPlayer, opsPlayer, true);
-
-            return null;
+            addMessage("Code is valid!\n Check your position in the leaderboard!");
         }
     }
 
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
 }
+//

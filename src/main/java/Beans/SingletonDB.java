@@ -7,7 +7,6 @@ package Beans;
 
 import Model.Player;
 import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,6 +41,7 @@ public class SingletonDB implements Serializable {
         correctCodes.add("codename");
         correctCodes.add("milan");
         correctCodes.add("0");
+        correctCodes.add("zero");
     }    
 
     public Datastore getDatastore() {

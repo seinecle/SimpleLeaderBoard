@@ -1,0 +1,204 @@
+body {
+    background: url("#{resource['img:bg.jpg']}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Open, sans-serif;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #f7f7f7;
+    color: #545454;
+    min-height:900px;
+    font-weight: 100;
+}
+a {
+    color: #5dba5d;
+    transition: 0.2s all;
+    font-weight: normal;
+    text-decoration: none;
+}
+.logo {
+    padding: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 160px;
+    margin: 0 auto;
+}
+.logo img {
+    width: 149px;
+}
+h1 {
+text-transform: uppercase;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 44px;
+    margin: 0 0 25px;
+    font-weight: 100;
+    padding: 0 0 28px;
+    height: 20px;
+    background-repeat: no-repeat;
+    font-family: Futura;
+    font-weight: bold;
+    letter-spacing: 11px;
+    text-shadow: 1px 1px 1px rgba(236, 236, 236, 0.66);
+}
+h2 {
+    font-size: 15px;
+}
+.content {
+    padding: 35px 0px;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+}
+.content_main {
+    background-color: rgba(255, 255, 255, 0.36);
+    border-radius: 6px;
+    padding: 20px 20px 0px;
+    margin-bottom: 18px;
+    transition:0.2s all;    
+}
+span.number {
+    background-color: rgba(93, 186, 93, 0.85);
+    color: #fff;
+    width: 26px;
+    display: block;
+    float: left;
+    margin-right: 9px;
+    height: 21px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: -3px;
+    display: none;
+}
+
+form#j_idt6 {
+    width: 260px;
+    margin: 0 auto;
+}
+.label_form {
+    width: 100%;
+    float: left;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.leaderboard_link {
+    text-align: center;
+    font-size: 21px;
+    border: 1px solid #ECECEC;
+    border-radius: 5px;
+    padding: 4px;
+    width: 148px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 1px 4px 2px #DCDCDC;
+    transition: 0.2s all;
+    height: 55px;
+}
+.leaderboard_link:hover {
+    box-shadow: 1px 2px 2px rgba(162, 162, 162, 0.83);
+    transition: 0.2s all;
+    cursor: pointer;
+}
+.leaderboard_link a {
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    padding: 25px 18px 5px;
+    margin-top: -20px;
+}
+.first_line {
+    text-align: center;
+    margin-bottom: 17px;
+    line-height: 25px;
+}
+
+.leaderboard_link a:hover {
+    text-decoration: none;
+    transition: 0.2s all;
+}
+.ui-inputfield {
+margin: 8px auto 15px;
+    outline: medium none;
+    padding: 4px;
+    font-weight: normal;
+    background-color: rgba(255, 255, 255, 0.75)!important;
+    box-shadow: none!important;
+    border-color: rgba(115, 195, 114, 0.52)!important;
+    width: 200px;
+}
+/*.ui-button, .ui-button-text-only .ui-button-text {
+    display: none;
+}*/
+.label_form.label2 {
+    margin-right: 9px;
+    margin-top: -8px;
+}
+.ui-widget-content {
+    color: #4f4f4f;
+    background: transparent;
+    text-shadow: none;
+    box-shadow: none;
+}
+tr.ui-widget-content.ui-datatable-even {
+    background-color: #F3F3F3;
+}
+ui-widget-content {
+    border: 1px solid #a8a8a8;
+    color: #4f4f4f;
+    background: transparent;
+    text-shadow: none;
+    box-shadow: none;
+    border-color: #f7f7f7;
+}
+.ui-datatable tbody td {
+    text-shadow: none;
+    box-shadow: none;
+    border-color: #D6D6D6;
+    background-color: rgba(255, 255, 255, 0.67);
+}
+.ui-state-default {
+    background: rgba(255, 255, 255, 0.79);
+    text-shadow: none;
+    box-shadow: none;
+    border-color: #C3C3C3;
+}
+
+.clean_button {
+    border: 1px solid #ECECEC;
+    border-radius: 5px;
+    padding: 4px;
+    width: 119px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 1px 4px 2px #DCDCDC;
+    transition: 0.2s all;
+    height: 50px;
+}
+.leaderboard_link:hover, .clean_button:hover {
+    box-shadow: 1px 2px 2px rgba(162, 162, 162, 0.83);
+    transition: 0.2s all;
+    cursor: pointer;
+}
+.clean_button a {
+    display: block;
+    position: absolute;
+    padding: 25px 12px 5px;
+    margin-top: -20px;
+}
+@media (max-width:440px){
+    .leaderboard h1 {
+        font-size: 28px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+.ui-datatable-tablewrapper {
+    font-size: 14px;
+}    
+.content_main {
+    font-size: 15px;
+    transition:0.2s all;
+}
+} 

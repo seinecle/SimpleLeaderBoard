@@ -4,37 +4,54 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Leaderboard</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
+
+        <title>CODAPPS Game Leaderboard</title>
     </h:head>
-    <h:body>
-        <img style="display: block;
-             margin-left: auto;
-             margin-right: auto;" src="logo onlylyon emlyon.png"/><br/>
+    <h:body class="leaderboard">
+        <h:outputStylesheet library="css" name="style.css"  />
 
-        <br/>
-        <br/>
-        <br/>
-        <h2 style="text-align: center;">More info on CODAPPS and the bus tour: <a href="http://www.codapps.io">http://www.codapps.io</a></h2>
-        <br/>
-        <br/>
-        <h1 style="text-align: center;">Leaderboard:</h1>
+        <div class="content"><div class="logo"><img src="logo codapps.jpg" /></div><br/>
+            <br/>
+            <h1 style="text-align: center;">CODAPPS Game Leaderboard</h1>
+            <br/>
+            <br/>
+
+            <p:dataTable var="player" value="#{playersBean.players}" rowIndexVar="rowIndex">
+
+                <p:column headerText="Position">
+                    #{player.rank} <i class="#{rowIndex lt 3 ? 'fa fa-thumbs-o-up ':''}"></i> 
+
+                </p:column>
+
+                <p:column headerText="Player">
+                    <h:outputText value="#{player.twitter}" />
+                </p:column>
+
+                <p:column headerText="Nb of badges found">
+                    <h:outputText value="#{player.correctCodes}" />
+                </p:column>
+
+                <p:column headerText="Badges">
+                    <h:outputText value="#{player.htmlListOfCodeAwards}" escape="false"/>
+                </p:column>
+
+                <p:column headerText="Total points">
+                    <h:outputText value="#{player.points}" escape="false"/>
+                </p:column>
 
 
-        <p:dataTable var="player" value="#{playersBean.players}" rowIndexVar="rowIndex">
+            </p:dataTable>
+            <br />
+            <br />
+            <div class="clean_button">
+                <b>Back to the <h:link style="text-align: center; font-size: 130%;" outcome="index" value="input page" /></b></div>
+            <br/>
 
-            <p:column headerText="Rank">
-                #{rowIndex+1}
-            </p:column>
-
-            <p:column headerText="Twitter Handle">
-                <h:outputText value="#{player.twitter}" />
-            </p:column>
-
-            <p:column headerText="Correct codes">
-                <h:outputText value="#{player.correctCodes}" />
-            </p:column>
-
-        </p:dataTable>
+            <br/>
+            <h2 style="text-align: center;">More info on CODAPPS</h2>
+            <a href="http://www.codapps.io">http://www.codapps.io</a>
+        </div>
     </h:body>
 </html>
 

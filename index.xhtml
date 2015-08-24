@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>CODAPPS Game Leaderboard - write in your code!</title>
+
+    </h:head>
+    <h:body>
+ <div class="content"><div class="logo"><img src="logo onlylyon emlyon.png" /></div><br/>
+        <br/>
+        <h1>CODAPPS Game Leaderboard</h1>
+        <h3>A social game for CODAPPS, the course to learn how to create mobile apps</h3>
+        <h4>Prizes will be awarded to the top players!</h4>
+        <div class="content_main">
+       <div class="first_line">Codes can be found in different ways:</div>  <br/>
+		<span class="number">1</span>- in the lectures of the course<br/>
+        <br/>
+          <span class="number">2</span>- by realizing assignments of the course<br/>
+        <br/>
+          <span class="number">3</span>- while participating in social activities of CODAPPS, such as meetups of the <a href="http://www.codapps.io">CODAPPS bus tour</a><br/> <br/>
+          <span class="number">4</span>- and in other surprising places as well!<br/>
+        <br/>
+		The CODAPPS Game does not replace and is independent from the academic certificate for CODAPPS. Participation is on a voluntary basis.<br/>
+		<br/>
+        <br/
+
+
+        <h:form>
+            <p:growl id="growl" life="2500" />
+            <div class="label_form">Your Twitter account: </div><p:inputText value="#{codeInput.twitter}" required="true">
+                <f:validateLength minimum="3" maximum="16" /> 
+            </p:inputText>
+            <br/>
+            <br/>
+            <div class="label_form label2">The code you found:</div><p:inputText value="#{codeInput.code}" />
+            
+            <p:commandButton value="Submit" id="ajax" update="growl" actionListener="#{codeInput.saveCode}"/>
+        </h:form>
+       </div> 
+       <div class="leaderboard_link">Check the <h:link outcome="leaderboard" value="leaderboard" /></div></div>
+    </h:body>
+</html>
+

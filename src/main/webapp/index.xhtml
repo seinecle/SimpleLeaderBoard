@@ -5,41 +5,54 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Save your code</title>
+        <title>CODAPPS Game - write in your code!</title>
+
     </h:head>
     <h:body>
-        <img style="display: block;
-             margin-left: auto;
-             margin-right: auto;" src="logo onlylyon emlyon.png"/><br/>
-        <br/>
-        <h1>This is a test page for a leaderboard</h1>
-        <br />
-        Regular players would enter codes like #CODAPPSI35304 but to test the app, <b>the codes will be the correct answers to these questions:</b><br />
-        1) What is the year of foundation of EMLYON?<br/>
-        <br/>
-        2) What is the first city that the <a href="http://www.codapps.io">CODAPPS bus tour</a> will visit?<br/>
-        <br/>
-        3) How many years of experience in coding are required to register to CODAPPS?<br/>
-        4) What is the name of the framework that we will used to code mobile apps in CODAPPS?<br/>
-        <br/>
-        <br/>
-
-        <h:form>
-            Your Twitter handle: <p:inputText value="#{codeInput.twitter}" required="true">
-                <f:validateLength minimum="3" maximum="16" /> 
-            </p:inputText>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <div class="content"><div class="logo"><img src="logo codapps.jpg" /></div><br/>
             <br/>
-            <br/>
-            The code you found / the answser to one of the answers above: <p:inputText value="#{codeInput.code}" /><br/>
-            <br/>
-            <p:commandButton value="submit" action="#{codeInput.saveCode}"/><br/>
-        </h:form>
-        <br/>
-        <br/>
-        <b>Check the <h:link outcome="leaderboard" value="leaderboard" /></b>
+            <h1>CODAPPS Game</h1>
+
+            <div class="content_main">
+                <div class="first_line">
+                    <h3>A social game for <a href="http://www.codapps.io">CODAPPS</a> - learn how to create mobile apps</h3>
+                    <h4>Prizes will be awarded to the top players!</h4>
+                </div>
+
+                <div class="leaderboard_link">Check the <h:link outcome="leaderboard" value="leaderboard" /></div>
+                    <br/>
+                    <br/>
 
 
+                <h:form>
+                    <p:growl id="growl" life="2500" />
+                    <div class="label_form">Your Twitter account: </div><p:inputText value="#{codeInput.twitter}" required="true">
+                        <f:validateLength minimum="3" maximum="16" /> 
+                    </p:inputText>
+                    <br/>
+                    <br/>
+                    <div class="label_form label2">The code you found:</div><p:inputText value="#{codeInput.code}" />
+                    <br/>
+                    <div class="label_form label2"><p:commandButton value="Submit" id="ajax" update="growl" actionListener="#{codeInput.saveCode}"/></div>
+                </h:form>
 
+                <br/>
+                <br/>
+
+                Codes can be found in different ways:<br/><br/>
+                <span class="number">1</span>- in the lectures of the course<br/>
+                <br/>
+                <span class="number">2</span>- by realizing assignments of the course<br/>
+                <br/>
+                <span class="number">3</span>- while participating in social activities of CODAPPS, such as meetups of the <a href="http://www.codapps.io">CODAPPS bus tour</a><br/> <br/>
+                <span class="number">4</span>- and in other surprising places as well!<br/>
+                <br/>
+                The CODAPPS Game does not replace and is independent from the academic certificate for CODAPPS. Participation is on a voluntary basis.<br/>
+
+
+            </div> 
+        </div> 
     </h:body>
 </html>
 
