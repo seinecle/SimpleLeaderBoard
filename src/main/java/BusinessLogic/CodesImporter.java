@@ -6,6 +6,7 @@
 package BusinessLogic;
 
 import Model.CodeAward;
+import Private.Code;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -23,7 +24,7 @@ public class CodesImporter {
     static URL u;
 
     public static Set<CodeAward> importCodes() throws MalformedURLException, IOException {
-        u = new URL("https://dl.dropboxusercontent.com/u/28091845/codapps_codes.txt");
+        u = new URL(Code.codeUrl);
         InputStream in = u.openStream();
         String myString = IOUtils.toString(in, "UTF-8");
         String[] lines = myString.split("\n");
@@ -32,7 +33,13 @@ public class CodesImporter {
         for (String line : lines) {
             String[] fields = line.split(",");
             if (fields.length > 2) {
-                codeAwards.add(new CodeAward(fields[0].toLowerCase().trim(), fields[1].trim(), Integer.parseInt(fields[2].trim())));
+                try {
+                    String code = fields[0].toLowerCase().trim();
+                    code = !code.startsWith("#") ? "#" + code : code;
+                    codeAwards.add(new CodeAward(code, fields[1].trim(), Integer.parseInt(fields[2].trim())));
+                } catch (Exception e) {
+                    System.out.println("Error when importing codes from dropbox");
+                }
             }
         }
         return codeAwards;

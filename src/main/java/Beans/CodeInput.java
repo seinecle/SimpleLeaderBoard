@@ -60,7 +60,7 @@ public class CodeInput implements Serializable {
     }
 
     public void setTwitter(String twitter) {
-        this.twitter = twitter.replace("@", "");
+        this.twitter = twitter.replaceAll("@", "");
     }
 
     public void saveCode() throws IOException {

@@ -37,11 +37,6 @@ public class SingletonDB implements Serializable {
         datastore.ensureIndexes();
         
         correctCodes = new HashSet();
-        correctCodes.add("1872");
-        correctCodes.add("codename");
-        correctCodes.add("milan");
-        correctCodes.add("0");
-        correctCodes.add("zero");
     }    
 
     public Datastore getDatastore() {
