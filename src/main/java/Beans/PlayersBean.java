@@ -70,7 +70,12 @@ public class PlayersBean implements Serializable {
                     for (CodeAward codeAward : codeAwards) {
                         if (code.equals(codeAward.getCode())) {
                             categoryCodeAwards.add(codeAward.getCategory());
-                            player.setPoints(player.getPoints() + codeAward.getPoints());
+                            try {
+                                player.setPoints(player.getPoints() + codeAward.getPoints());
+                            } catch (Exception e) {
+                                System.out.println("Exception when adding points: ");
+                                System.out.println(e);
+                            }
                             break;
                         }
                     }

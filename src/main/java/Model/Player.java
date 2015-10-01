@@ -24,7 +24,7 @@ public class Player implements Comparable<Player> {
     int correctCodes;
     String htmlListOfCodeAwards;
     int rank;
-    int points = 0;
+    Integer points = 0;
 
     public String getEmailAddress() {
         return email;
@@ -75,23 +75,19 @@ public class Player implements Comparable<Player> {
         this.htmlListOfCodeAwards = htmlListOfCodeAwards;
     }
 
-    public int getPoints() {
+    public Integer getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(Integer points) {
         this.points = points;
     }
-    
-    
 
     @Override
     public int compareTo(Player another) {
-        if (this.points < another.points) {
-            return -1;
-        } else {
-            return 1;
-        }
+
+        return (this.points).compareTo(another.points);
+
     }
 
 }

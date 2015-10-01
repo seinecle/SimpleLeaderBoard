@@ -21,13 +21,13 @@
                 </div>
 
                 <div class="leaderboard_link">Check the <h:link outcome="leaderboard" value="leaderboard" /></div>
-                    <br/>
-                    <br/>
+                <br/>
+                <br/>
 
 
                 <h:form>
                     <p:growl id="growl" life="2500" />
-                    <div class="label_form">Your Twitter account: </div><p:inputText value="#{codeInput.twitter}" required="true">
+                    <div class="label_form">Your nickname: </div><p:inputText value="#{codeInput.twitter}" required="true">
                         <f:validateLength minimum="3" maximum="16" /> 
                     </p:inputText>
                     <br/>
@@ -49,10 +49,13 @@
                 <span class="number">4</span>- and in other surprising places as well!<br/>
                 <br/>
                 The CODAPPS Game does not replace and is independent from the academic certificate for CODAPPS. Participation is on a voluntary basis.<br/>
-                
+
                 <br/>
                 <br/>
                 <span id="goal"></span>The objective of this game is to stimulate participation to the MOOC. Learning online can be sometimes a difficult and solitary experience. Through this game, we hope to enhance the social experience of studying online and bring some light hearted fun that will keep participants engaged.
+
+                <br/>
+                This leaderboard was created by <a href="http://www.clementlevallois.net">Clement Levallois</a> (backend, frontend) with Antoine Levallois (design). This is an <a href="https://github.com/seinecle/SimpleLeaderBoard">open source projet</a>, feel free to reuse the code to create your own leaderboard (Apache 2 license).
 
 
             </div> 
